@@ -4,12 +4,29 @@ import matplotlib.pylab as plt
 import numpy as np
 import tensorflow as tf
 import tensorflow_hub as hub
+import io
 import os
 from flask import Flask, jsonify, request
 import requests
 from PIL import Image
+from flask import send_file
+import sys
+import requests
+import firebase_admin
+from firebase_admin import credentials
+from firebase_admin import storage
+
+cred = credentials.Certificate('firebase_key.json')
+firebase_admin.initialize_app(cred, {
+    'storageBucket': 'cloudcomputing-327312.appspot.com'
+})
+bucket = storage.bucket()
+
+
+
 
 app = Flask(__name__)
+ 
 
 def crop_center(image):
   """Returns a cropped square image."""
@@ -52,7 +69,7 @@ def show_n(images, titles=('',)):
 @app.route('/')
 def classify():
 
-  url='http://172.19.251.0:8080/run'
+  url='http://172.22.54.170:8080/run'
 
   multiple_files = [
       ('image', open('image.jpg', 'rb')),
@@ -64,7 +81,7 @@ def classify():
   r = requests.post(url, files=multiple_files, data=payload)
 
   # convert server response into JSON format.
-  return r.json()
+  return r
 
 @app.route('/run', methods = ['POST']) 
 def run():
@@ -100,8 +117,24 @@ def run():
   stylized_image = outputs[0]
   img = stylized_image[0].numpy()
   tf.keras.utils.save_img("stylized.jpg", img)
+
+  im = Image.open('stylized.jpg')
+  buf = io.BytesIO()
+  im.save(buf, format='JPEG')
+  b = buf.getvalue()
+
+
+  #image_data = requests.get("https://brosset.li/wp-content/uploads/2021/07/miroir.jpg").content
+  #b = bytearray(img)
+  blob = bucket.blob('stylized.jpg')
+  blob.upload_from_string(
+          b,
+          content_type='image/jpg'
+      )
+  print(blob.public_url)
   #show_n([content_image, style_image, stylized_image], titles=['Original content image', 'Style image', 'Stylized image'])
-  return jsonify({'msg': 'success'})
+  return jsonify(blob.public_url)
+  #return jsonify({'msg': 'success'})
 
 if __name__ == '__main__':
 
