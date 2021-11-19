@@ -1,0 +1,27 @@
+curl \
+  -F "image=@image.jpg" \
+  -F "image=@style2.jpg" \
+  http://172.19.9.120:8080/api
+
+
+curl --header "Content-Type: application/json" \
+  -H 'Cache-Control: no-cache' \
+  --request POST \
+  --data '{"pic1":"https://firebasestorage.googleapis.com/v0/b/webproj-7a2c4.appspot.com/o/male.jpg?alt=media&token=6b0922d2-3ef0-40fd-97c4-c2f518168dd4","pic2":"https://firebasestorage.googleapis.com/v0/b/webproj-7a2c4.appspot.com/o/Female.jpg?alt=media&token=e65f36ad-8b15-417e-b98b-860fa024c891"}' \
+  https://api-qx6f75jsla-ew.a.run.app/api
+
+
+curl -v -F filename=image.jpg -F upload=@image.jpg http://localhost:8080/api/upload
+
+
+https://firebasestorage.googleapis.com/v0/b/webproj-7a2c4.appspot.com/o/245649051_253023900169885_5233081325163463565_n.jpg?alt=media&token=f66b6e65-2f1e-475f-acd7-a3097bbac457
+https://firebasestorage.googleapis.com/v0/b/webproj-7a2c4.appspot.com/o/style2.jpg?alt=media&token=86e3db86-3a12-412c-965f-c4144ff37444
+
+curl \
+  -F "image=@image.jpg" \
+  -F "image=@style.jpg" \
+  http://172.22.54.170:8080/run > output.jpg
+
+http://172.22.54.170:8080/
+
+http://172.22.54.170:8080

@@ -119,7 +119,7 @@ section .custom-row .custom-col.home div h5 {
   margin-top: 195px;
 }
 
-section .custom-row .custom-col.home div form .uploading, section .custom-row .custom-col.home div form .download, section .custom-row .custom-col.home div form .control div {
+section .custom-row .custom-col.home div .uploading, section .custom-row .custom-col.home div .download, section .custom-row .custom-col.home div .control div {
   -webkit-box-shadow: 6.2px 3.2px 23px 0 rgba(0, 0, 0, 0.05);
           box-shadow: 6.2px 3.2px 23px 0 rgba(0, 0, 0, 0.05);
   background-color: #fff;
@@ -129,14 +129,16 @@ section .custom-row .custom-col.home div form .uploading, section .custom-row .c
   margin: 17px auto;
 }
 
-section .custom-row .custom-col.home div form .control div {
+section .custom-row .custom-col.home div .control div {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   gap: 20px;
 }
 
-section .custom-row .custom-col.home div form .control div input::-webkit-file-upload-button {
+section .custom-row .custom-col.home div .control div input::-webkit-file-upload-button {
   background: transparent;
   font-family: 'Poppins';
   font-size: 22.5px;
@@ -147,28 +149,34 @@ section .custom-row .custom-col.home div form .control div input::-webkit-file-u
   margin-top: 22px;
 }
 
-section .custom-row .custom-col.home div form .control div img {
+section .custom-row .custom-col.home div .control div img {
   width: 50px;
   height: 65px;
   -o-object-fit: cover;
      object-fit: cover;
 }
 
-section .custom-row .custom-col.home div form .control p {
+section .custom-row .custom-col.home div .control div button {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 100%;
+          flex: 0 0 100%;
+}
+
+section .custom-row .custom-col.home div .control p {
   text-align: center;
   font-family: 'Poppins';
   font-size: 18px;
   color: rgba(29, 53, 87, 0.45);
 }
 
-section .custom-row .custom-col.home div form .uploading h4 {
+section .custom-row .custom-col.home div .uploading h4 {
   font-family: 'Poppins';
   font-size: 30px;
   font-weight: 500;
   color: #000;
 }
 
-section .custom-row .custom-col.home div form .uploading .holder {
+section .custom-row .custom-col.home div .uploading .holder {
   margin: 24px auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -182,7 +190,7 @@ section .custom-row .custom-col.home div form .uploading .holder {
   position: relative;
 }
 
-section .custom-row .custom-col.home div form .uploading .holder div.text {
+section .custom-row .custom-col.home div .uploading .holder div.text {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -195,20 +203,20 @@ section .custom-row .custom-col.home div form .uploading .holder div.text {
   top: 32%;
 }
 
-section .custom-row .custom-col.home div form .uploading .holder div.text span, section .custom-row .custom-col.home div form .uploading .holder div.text p {
+section .custom-row .custom-col.home div .uploading .holder div.text span, section .custom-row .custom-col.home div .uploading .holder div.text p {
   text-align: center;
 }
 
-section .custom-row .custom-col.home div form .uploading .holder div.text span {
+section .custom-row .custom-col.home div .uploading .holder div.text span {
   font-size: 34px;
   font-weight: 600;
 }
 
-section .custom-row .custom-col.home div form .uploading .holder div.text p {
+section .custom-row .custom-col.home div .uploading .holder div.text p {
   font-size: 20px;
 }
 
-section .custom-row .custom-col.home div form .uploading .holder .progress {
+section .custom-row .custom-col.home div .uploading .holder .progress {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -218,7 +226,7 @@ section .custom-row .custom-col.home div form .uploading .holder .progress {
   border-radius: 50%;
 }
 
-section .custom-row .custom-col.home div form .uploading .holder .progress svg {
+section .custom-row .custom-col.home div .uploading .holder .progress svg {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -230,14 +238,14 @@ section .custom-row .custom-col.home div form .uploading .holder .progress svg {
       align-self: center;
 }
 
-section .custom-row .custom-col.home div form .uploading .holder .progress svg circle {
+section .custom-row .custom-col.home div .uploading .holder .progress svg circle {
   stroke-dasharray: 817.14;
   stroke-dashoffset: 817.14;
   -webkit-transform: rotate(270deg) translate(-271px, 3px);
           transform: rotate(270deg) translate(-271px, 3px);
 }
 
-section .custom-row .custom-col.home div form .download a {
+section .custom-row .custom-col.home div .download a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -247,13 +255,13 @@ section .custom-row .custom-col.home div form .download a {
   text-decoration: none;
 }
 
-section .custom-row .custom-col.home div form .download a .text p {
+section .custom-row .custom-col.home div .download a .text p {
   font-family: 'Poppins';
   font-size: 20.5px;
   color: #7786aa;
 }
 
-section .custom-row .custom-col.home div form .download a .text h3 {
+section .custom-row .custom-col.home div .download a .text h3 {
   line-height: 1;
   margin: 11px 0 0 0;
   font-family: 'Poppins';
@@ -262,11 +270,11 @@ section .custom-row .custom-col.home div form .download a .text h3 {
   color: #000;
 }
 
-section .custom-row .custom-col.home div form .download a .img-holder {
+section .custom-row .custom-col.home div .download a .img-holder {
   margin: auto 0 0 0;
 }
 
-section .custom-row .custom-col.home div form .download a .img-holder img {
+section .custom-row .custom-col.home div .download a .img-holder img {
   vertical-align: bottom;
   -o-object-fit: cover;
      object-fit: cover;

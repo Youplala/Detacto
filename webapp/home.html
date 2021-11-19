@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/home/home.css">
-    <title>Document</title>
+    <title>Sys-Op-Dashboard</title>
 </head>
 <body>
     <section>
@@ -29,48 +29,107 @@
                     <h2>Welcome to detacto</h2>
                     <div>
                         <h5>Please upload your file</h5>
-                        <form action="">
-                            <div class="control">
-                                <div>
+                        <div class="control">
+                            <div>
+                                <img src="assets/images/pdf-file-files-icon.svg" alt="">
+                                <input type="file" id="file1">
+                                <input type="file" id="file2">
+                                <button id="upload">Upload</button>
+                            </div>
+                            <p>Or drop files above</p>
+                        </div>
+
+                        <div class="uploading">
+                            <h4>Uploading</h4>
+                            <div class="holder">
+                                <div class="progress">
+                                    <svg width="273px" height="273px">
+                                        <circle cx="135" cy="135" r="130" stroke-width="10" stroke="white" fill="#0d00df"
+                                        style="stroke-dashoffset: calc(817.14 - (817.14*90) / 100)"/>
+                                    </svg>
+                                </div>
+                                <div class="text">
+                                    <span>60%</span>
+                                    <p>Uploded</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="download">
+                            <a href="">
+                                <div class="text">
+                                    <p>Download the final results</p>
+                                    <h3>Pdf</h3>
+                                </div>
+                                <div class="img-holder">
                                     <img src="assets/images/pdf-file-files-icon.svg" alt="">
-                                    <input type="file">
                                 </div>
-                                <p>Or drop files above</p>
-                            </div>
+                            </a>
+                        </div>
 
-                            <div class="uploading">
-                                <h4>Uploading</h4>
-                                <div class="holder">
-                                    <div class="progress">
-                                        <svg width="273px" height="273px">
-                                            <circle cx="135" cy="135" r="130" stroke-width="10" stroke="white" fill="#0d00df" 
-                                            style="stroke-dashoffset: calc(817.14 - (817.14*90) / 100)"/>
-                                        </svg>
-                                    </div>
-                                    <div class="text">
-                                        <span>60%</span>
-                                        <p>Uploaded</p>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="download">
-                                <a href="">
-                                    <div class="text">
-                                        <p>Download the final results</p>
-                                        <h3>Pdf</h3>
-                                    </div>
-                                    <div class="img-holder">
-                                        <img src="assets/images/pdf-file-files-icon.svg" alt="">
-                                    </div>
-                                </a>
-                            </div>
-
-                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!--------------------------FIRBASE LIBRARIES-------------------------------------------------->
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-storage.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+        https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.2/firebase-analytics.js"></script>
+    <script>
+        var firebaseConfig = {
+            apiKey: "AIzaSyByj468Q-e3rdYBERhETgrA0KkqX2f8veA",
+            authDomain: "webproj-7a2c4.firebaseapp.com",
+            databaseURL: "https://webproj-7a2c4-default-rtdb.firebaseio.com",
+            projectId: "webproj-7a2c4",
+            storageBucket: "webproj-7a2c4.appspot.com",
+            messagingSenderId: "907839363467",
+            appId: "1:907839363467:web:963bb013f451674ff5778e",
+            measurementId: "G-XEZXJ776N4"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        firebase.analytics();
+
+
+        document.getElementById('upload').addEventListener('click', function(){
+            // debugger
+            const ref = firebase.storage().ref()
+            const file1 = document.querySelector('#file1').files[0]
+            const file2 = document.querySelector('#file2').files[0]
+
+            const name1 = file1.name;
+            const name2 = file2.name;
+
+            const task1 = ref.child(name1).put(file1)
+            const task2 = ref.child(name2).put(file2)
+            var link1=""
+            var link2=""
+            task1
+                .then(snapshot => snapshot.ref.getDownloadURL())
+                .then(url => {
+                    console.log(url)
+                    link1=url
+                })
+            task2
+                .then(snapshot => snapshot.ref.getDownloadURL())
+                .then(url => {
+                    console.log(url)
+                    link2=url
+                })
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "https://api-qx6f75jsla-ew.a.run.app/api", true);
+        xhr.setRequestHeader('Content-Type', 'application/json');
+        xhr.send(JSON.stringify({
+            pic1: link1,
+            pic2:link2
+        }));
+        })
+
+    </script>
 </body>
 </html>
