@@ -114,15 +114,17 @@
                 .then(url => {
                     console.log(url)
                     link1=url
+                    alert("file 1 upload Successful")
                 })
             task2
                 .then(snapshot => snapshot.ref.getDownloadURL())
                 .then(url => {
                     console.log(url)
                     link2=url
+                    alert("file 2 upload Successful")
                 })
         var xhr = new XMLHttpRequest();
-        xhr.open("POST", "http://172.28.46.48:8080/api", true);
+        xhr.open("POST", "https://api-qx6f75jsla-ew.a.run.app/api", true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.send(JSON.stringify({
             pic1: link1,

@@ -5,10 +5,14 @@ curl \
 
 
 curl --header "Content-Type: application/json" \
-  -H 'Cache-Control: no-cache' \
   --request POST \
   --data '{"pic1":"https://firebasestorage.googleapis.com/v0/b/webproj-7a2c4.appspot.com/o/male.jpg?alt=media&token=6b0922d2-3ef0-40fd-97c4-c2f518168dd4","pic2":"https://firebasestorage.googleapis.com/v0/b/webproj-7a2c4.appspot.com/o/Female.jpg?alt=media&token=e65f36ad-8b15-417e-b98b-860fa024c891"}' \
-  https://api-qx6f75jsla-ew.a.run.app/api
+  http://172.28.46.48:8080/ 
+
+
+curl --request POST \
+  --data '{"pic1":"https://firebasestorage.googleapis.com/v0/b/webproj-7a2c4.appspot.com/o/male.jpg?alt=media&token=6b0922d2-3ef0-40fd-97c4-c2f518168dd4","pic2":"https://firebasestorage.googleapis.com/v0/b/webproj-7a2c4.appspot.com/o/Female.jpg?alt=media&token=e65f36ad-8b15-417e-b98b-860fa024c891"}' \
+  http://172.28.46.48:8080/ 
 
 
 curl -v -F filename=image.jpg -F upload=@image.jpg http://localhost:8080/api/upload

@@ -1,4 +1,5 @@
 import os
+from flask.helpers import make_response
 from matplotlib import gridspec
 import matplotlib.pylab as plt
 import tensorflow as tf
@@ -7,6 +8,7 @@ from flask import Flask, jsonify, request
 import firebase_admin
 from firebase_admin import credentials
 from firebase_admin import storage
+
 
 cred = credentials.Certificate(os.path.basename('firebase_key.json'))
 firebase_admin.initialize_app(cred, {
@@ -90,10 +92,14 @@ def run():
     os.remove(path1)
     os.remove(path2)
 
+    resp = make_response(jsonify({'status': 'ok', 'image_url': url}))
+    resp.headers['Access-Control-Allow-Origin'] = '*'
+    #return resp
+
   except:
     return jsonify({"status": "bad"})
   
-  return jsonify({'status': 'ok', 'image_url': url})
+  return resp
 
 if __name__ == '__main__':
 
