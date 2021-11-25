@@ -11,9 +11,7 @@ from firebase_admin import storage
 
 
 cred = credentials.Certificate(os.path.basename('firebase_key.json'))
-firebase_admin.initialize_app(cred, {
-    'storageBucket': 'cloudcomputing-327312.appspot.com'
-})
+firebase_admin.initialize_app(cred, {'storageBucket': 'cloudcomputing-327312.appspot.com'})
 bucket = storage.bucket()
 
 app = Flask(__name__)
@@ -31,7 +29,6 @@ def crop_center(image):
   image = tf.image.crop_to_bounding_box(
       image, offset_y, offset_x, new_shape, new_shape)
   return image
-
 
 #@functools.lru_cache(maxsize=None)
 def load_image(image_url, number, image_size=(256, 256), preserve_aspect_ratio=True):

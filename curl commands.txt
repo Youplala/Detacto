@@ -10,9 +10,10 @@ curl --header "Content-Type: application/json" \
   http://172.28.46.48:8080/ 
 
 
-curl --request POST \
+curl --header "Content-Type: application/json" \
+  --request POST \
   --data '{"pic1":"https://firebasestorage.googleapis.com/v0/b/webproj-7a2c4.appspot.com/o/male.jpg?alt=media&token=6b0922d2-3ef0-40fd-97c4-c2f518168dd4","pic2":"https://firebasestorage.googleapis.com/v0/b/webproj-7a2c4.appspot.com/o/Female.jpg?alt=media&token=e65f36ad-8b15-417e-b98b-860fa024c891"}' \
-  http://172.28.46.48:8080/ 
+  https://young-sierra-79366.herokuapp.com/https://api-qx6f75jsla-ew.a.run.app/api
 
 
 curl -v -F filename=image.jpg -F upload=@image.jpg http://localhost:8080/api/upload
