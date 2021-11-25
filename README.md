@@ -57,9 +57,9 @@ The application extracts characteristics from an image in order to apply them on
 
 Therefore, this technology can find several applications: 
 
-- Entertainment. Diverse image editing applications were created and became very popular on download platforms. Applications such that aging, rejuvination, cartoonization, weight modification, etc, are the most popular. With *Detacto*,  you can have fun transferring styles from famous artists to your own pictures.
+- **Entertainment**. Diverse image editing applications were created and became very popular on download platforms. Applications such that aging, rejuvination, cartoonization, weight modification, etc, are the most popular. With **Detacto**,  you can have fun transferring styles from famous artists to your own pictures.
 
-- Commerce. This technology allows artists to bring a whole new dimension to their work, adding a new layer of reflexion.
+- **Commerce**. This technology allows artists to bring a whole new dimension to their work, adding a new layer of reflexion.
 
-- Social networks. Social network platforms are rising in popularity so much that they are also being used to do marketing campaigns. In order to maintain a coherent style on all these platforms, an artistic direction is needed. *Detacto* is the perfect solution for this. It will allow you to create and maintain a unique style and image for your social networks.
+- **Social networks**. Social network platforms are rising in popularity so much that they are also being used to do marketing campaigns. In order to maintain a coherent style on all these platforms, an artistic direction is needed. **Detacto** is the perfect solution for this. It will allow you to create and maintain a unique style and image for your social networks.
 
