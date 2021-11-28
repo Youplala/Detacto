@@ -60,6 +60,8 @@ def uploadImageToFirebase(image_url):
   blob.upload_from_filename(os.path.basename(image_url))
   return blob.public_url
 
+def extract_filename(url):
+  return url.split("/")[-1].split("?")[0].split(".")[0]
 
 @app.route('/api', methods = ['POST']) 
 def run():
@@ -69,6 +71,8 @@ def run():
     print(content)
     path1 = content['pic1']
     path2 = content['pic2']
+    filename = f"{extract_filename(path1)}+{extract_filename(path2)}.jpg"
+    print(filename)
     output_image_size = 384  # @param {type:"integer"}
 
     # The content image size can be arbitrary.
@@ -81,11 +85,11 @@ def run():
     outputs = hub_module(tf.constant(content_image), tf.constant(style_image))
     stylized_image = outputs[0]
     img = stylized_image[0].numpy()
-    tf.keras.utils.save_img(os.path.basename("stylized.jpg"), img)
+    tf.keras.utils.save_img(os.path.basename(filename), img)
 
-    url = uploadImageToFirebase(os.path.basename("stylized.jpg"))
+    url = uploadImageToFirebase(os.path.basename(filename))
 
-    os.remove(os.path.basename("stylized.jpg")) 
+    os.remove(os.path.basename(filename)) 
     os.remove(path1)
     os.remove(path2)
 
