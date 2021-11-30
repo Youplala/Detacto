@@ -6,11 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/home/home.css">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/favicons/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/favicons/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/favicons/favicon-16x16.png">
-    <link rel="manifest" href="assets/favicons/site.webmanifest">
-    <title>Detacto</title>
+    <title>Sys-Op-Dashboard</title>
 </head>
 
 <body>
@@ -51,19 +47,17 @@
                                 <div class="progress">
                                     <svg width="273px" height="273px">
                                         <circle cx="135" cy="135" r="130" stroke-width="10" stroke="white"
-                                            fill="#0d00df"
-                                            style="stroke-dashoffset: calc(817.14 - (817.14*90) / 100)" />
+                                            fill="#0d00df"/>
                                     </svg>
                                 </div>
                                 <div class="text">
-                                    <span>60%</span>
                                     <p>Uploded</p>
                                 </div>
                             </div>
                         </div>
 
                         <div class="download">
-                            <a href="">
+                            <a href="" download id="download-pic">
                                 <div class="text">
                                     <p>Download the final results</p>
                                     <h3>Pdf</h3>
@@ -155,13 +149,18 @@
                         body: raw,
                         redirect: 'follow'
                     };
-
+                    var download = document.getElementById('download-pic');
+                    let circle = document.querySelector('circle');
                     fetch("https://guarded-falls-82002.herokuapp.com/https://api-qx6f75jsla-ew.a.run.app/api?", requestOptions)
-                        .then(response => console.log(response.text()))
+                        .then(response =>{
+                            circle.classList.add('animate')
+                            download.href=response.text()
+                            download.style.display = 'flex'
+                        })
                         .then(result => console.log(result))
                         .catch(error => console.log('error', error));
                         console.log("link   " + link1)
-                          console.log("link   " + link2)
+                        console.log("link   " + link2)
                 }
 
         })

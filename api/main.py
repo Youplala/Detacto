@@ -68,11 +68,9 @@ def run():
 
   try:
     content = request.get_json()
-    print(content)
     path1 = content['pic1']
     path2 = content['pic2']
     filename = f"{extract_filename(path1)}+{extract_filename(path2)}.jpg"
-    print(filename)
     output_image_size = 384  # @param {type:"integer"}
 
     # The content image size can be arbitrary.
@@ -87,11 +85,16 @@ def run():
     img = stylized_image[0].numpy()
     tf.keras.utils.save_img(os.path.basename(filename), img)
 
+    print(f"Saving image to {filename}")
+
     url = uploadImageToFirebase(os.path.basename(filename))
+    print(f"Uploaded image to {url}")
 
     os.remove(os.path.basename(filename)) 
     os.remove(path1)
     os.remove(path2)
+
+    print(f"Deleted image {filename}")
 
     resp = make_response(jsonify({'status': 'ok', 'image_url': url}))
     resp.headers['Access-Control-Allow-Origin'] = '*'

@@ -169,6 +169,10 @@ section{
                                         stroke-dasharray: 817.14;
                                         stroke-dashoffset: 817.14;
                                         transform: rotate(270deg) translate(-271px, 3px);
+                                        &.animate{
+                                            animation-name: loading;
+                                            animation-duration: 4s;
+                                        }
                                     }
                                 }
                             }
@@ -176,9 +180,9 @@ section{
                     }
                     .download{
                         a{
-                            display: flex;
                             justify-content: space-between;
                             text-decoration: none;
+                            display: none;
                             .text{
                                 p{
                                     font-family: 'Poppins';
@@ -209,4 +213,11 @@ section{
             }
         }
     }
+}
+
+@keyframes loading {
+    0% {stroke-dashoffset: calc(817.14 - (817.14*0) / 100)}
+    50% {stroke-dashoffset: calc(817.14 - (817.14*50) / 100)}
+    75% {stroke-dashoffset: calc(817.14 - (817.14*75) / 100)}
+    100% {stroke-dashoffset: calc(817.14 - (817.14*100) / 100)}
 }
