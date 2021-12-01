@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/home/home.css">
-    <title>Sys-Op-Dashboard</title>
+    <title>Detacto</title>
 </head>
 
 <body>
@@ -20,22 +20,21 @@
                     <div class="menu">
                         <ul>
                             <li class="active"><img src="assets/images/dashboard.svg" alt=""><span>Dashboard</span></li>
-                            <li><img src="assets/images/result.svg" alt=""><span>Result</span></li>
-                            <li><img src="assets/images/inbox.svg" alt=""><span>Inbox</span></li>
-                            <li><img src="assets/images/setting.svg" alt=""><span>Setting</span></li>
                         </ul>
                     </div>
                 </div>
 
                 <div class="custom-col home">
-                    <h2>Welcome to detacto</h2>
-                    <div>
-                        <h5>Please upload your file</h5>
+                        <div>
+                        <h5>Upload your images</h5>
+                        <h4 style="text-align: center;">Apply style of an image to another image. The first image is anything and the second is the style.</h4>
+                        <h4 style="text-align: center;">Estimated time: 10-15 seconds</h4>
+                        <h4 style="text-align: center;">The web application works best on Chrome</h4>
                         <div class="control">
                             <div>
-                                <img src="assets/images/pdf-file-files-icon.svg" alt="">
+                                <img src="assets/images/upload.png" alt="" style="width: 50px;height:50px;">
                                 <input type="file" id="file1">
-                                <img src="assets/images/pdf-file-files-icon.svg" alt="">
+                                <img src="assets/images/upload.png" alt="" style="width: 50px;height:50px;">
                                 <input type="file" id="file2">
                                 <button id="upload">Upload</button>
                             </div>
@@ -43,7 +42,7 @@
                         </div>
 
                         <div class="uploading" id="uploading">
-                            <h4>Uploading</h4>
+                            <h4>Status</h4>
                             <div class="holder">
                                 <div class="progress">
                                     <svg width="273px" height="273px">
@@ -52,12 +51,12 @@
                                     </svg>
                                 </div>
                                 <div class="text">
-                                    <p>Uploaded</p>
+                                    <p>Loading</p>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="img-holder" style="max-width: 75%;">
+                        <div class="img-holder">
                             <img src="" alt="" id="img">
                         </div>
 
@@ -65,10 +64,10 @@
                             <a href=""  id="download-pic" download>
                                 <div class="text">
                                     <p>Download the final results</p>
-                                    <h3>Pdf</h3>
+                                    <h3>Image</h3>
                                 </div>
                                 <div class="img-holder">
-                                    <img src="assets/images/pdf-file-files-icon.svg" alt="">
+                                    <img src="assets/images/icons8-download-60.png" alt="">
                                 </div>
                             </a>
                         </div>
@@ -122,14 +121,12 @@
                 .then(url => {
                     console.log(url)
                     document.getElementById('link1').value = url
-                    alert("file 1 upload Successful");
                     task2
                         .then(snapshot => snapshot.ref.getDownloadURL())
 
                         .then(url => {
                             console.log(url)
                             document.getElementById('link2').value = url
-                            alert("file 2 upload Successful");
                             then()
                         })
                 })
