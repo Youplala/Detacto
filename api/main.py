@@ -97,8 +97,6 @@ def run():
     print(f"Deleted image {filename}")
 
     resp = make_response(jsonify({'status': 'ok', 'image_url': url}))
-    resp.headers['Access-Control-Allow-Origin'] = '*'
-    #return resp
 
   except:
     return jsonify({"status": "bad"})

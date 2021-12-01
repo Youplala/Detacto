@@ -28,7 +28,7 @@ To run and deploy Dedacto, follow the next steps.
 Clone repository to get started
 ```bash
 git clone https://github.com/Youplala/Detacto
-cd Detacto
+cd Detacto/
 ```
 
 ### Setup Firebase
@@ -65,3 +65,33 @@ Therefore, this technology can find several applications:
 - **Social networks**. Social network platforms are rising in popularity so much that they are also being used to do marketing campaigns. In order to maintain a coherent style on all these platforms, an artistic direction is needed. **Detacto** is the perfect solution for this. It will allow you to create and maintain a unique style and image for your social networks.
 
 ## About the model
+
+## Cost analysis
+
+### Google Cloud Run
+
+- Region: Belgium
+- CPU Allocation type: CPU is only allocated during request processing
+- CPU: 1
+- Memory: 1 GB
+- CPU Allocation Time: 35 vCPU-second
+- Memory Allocation Time: 35 GiB-second
+- Requests: 100 requests
+- Minimum number of instances: 1
+
+**Cost** = $13.14 /month
+### Artifact Registry
+
+- Image size: 1.4 Go
+
+**Cost** = $0.09 /month
+### Firebase
+
+**Spark Plan** is free but it has a limit uf utilization.
+
+### CloudFlare Pages
+Free for a small number of builds per month.
+
+### Total estimated cost
+
+$13.5 /month with regular utilization.
