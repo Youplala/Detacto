@@ -35,13 +35,14 @@
                             <div>
                                 <img src="assets/images/pdf-file-files-icon.svg" alt="">
                                 <input type="file" id="file1">
+                                <img src="assets/images/pdf-file-files-icon.svg" alt="">
                                 <input type="file" id="file2">
                                 <button id="upload">Upload</button>
                             </div>
                             <p>Or drop files above</p>
                         </div>
 
-                        <div class="uploading">
+                        <div class="uploading" id="uploading">
                             <h4>Uploading</h4>
                             <div class="holder">
                                 <div class="progress">
@@ -51,13 +52,17 @@
                                     </svg>
                                 </div>
                                 <div class="text">
-                                    <p>Uploded</p>
+                                    <p>Uploaded</p>
                                 </div>
                             </div>
                         </div>
 
+                        <div class="img-holder" style="max-width: 75%;">
+                            <img src="" alt="" id="img">
+                        </div>
+
                         <div class="download">
-                            <a href="" download id="download-pic">
+                            <a href=""  id="download-pic" download>
                                 <div class="text">
                                     <p>Download the final results</p>
                                     <h3>Pdf</h3>
@@ -97,13 +102,12 @@
         firebase.initializeApp(firebaseConfig);
         firebase.analytics();
 
-
         document.getElementById('upload').addEventListener('click', function () {
             // debugger
             const ref = firebase.storage().ref()
             const file1 = document.querySelector('#file1').files[0]
             const file2 = document.querySelector('#file2').files[0]
-
+            const delay = ms => new Promise(res => setTimeout(res, ms));
             const name1 = file1.name;
             const name2 = file2.name;
 
@@ -113,29 +117,30 @@
             var link1 = 'test'
             var link2 = 'test'
 
-
             task1
                 .then(snapshot => snapshot.ref.getDownloadURL())
                 .then(url => {
                     console.log(url)
                     document.getElementById('link1').value = url
-                    alert("file 1 upload Successful")
+                    alert("file 1 upload Successful");
+                    task2
+                        .then(snapshot => snapshot.ref.getDownloadURL())
+
+                        .then(url => {
+                            console.log(url)
+                            document.getElementById('link2').value = url
+                            alert("file 2 upload Successful");
+                            then()
+                        })
                 })
 
-            task2
-                .then(snapshot => snapshot.ref.getDownloadURL())
-
-                .then(url => {
-                    console.log(url)
-                    document.getElementById('link2').value = url
-                    alert("file 2 upload Successful")
-                    then()
-                })
+                var uploading = document.getElementById('uploading');
+                let img = document.getElementById('img');
 
                 function then(){
                     var myHeaders = new Headers();
                     myHeaders.append("Content-Type", "application/json");
-                    myHeaders.append("Origin", "https://api-qx6f75jsla-ew.a.run.app/api?");
+                    myHeaders.append("Origin", "https://api-qx6f75jsla-ew.a.run.app/api");
                     link1 = document.getElementById('link1').value
                     link2 = document.getElementById('link2').value
                     var raw = JSON.stringify({
@@ -151,16 +156,26 @@
                     };
                     var download = document.getElementById('download-pic');
                     let circle = document.querySelector('circle');
-                    fetch("https://guarded-falls-82002.herokuapp.com/https://api-qx6f75jsla-ew.a.run.app/api?", requestOptions)
-                        .then(response =>{
-                            circle.classList.add('animate')
-                            download.href=response.text()
-                            download.style.display = 'flex'
-                        })
-                        .then(result => console.log(result))
-                        .catch(error => console.log('error', error));
-                        console.log("link   " + link1)
-                        console.log("link   " + link2)
+                    var obj="";
+                    fetch("https://guarded-falls-82002.herokuapp.com/https://api-qx6f75jsla-ew.a.run.app/api", requestOptions)
+
+                    .then(response => response.text())
+                    .then(data =>  download.href= JSON.parse(data).image_url)
+                    .then(result => console.log(result))
+                    .catch(error => console.log('error', error));
+
+                    uploading.style.display = 'block';
+                    circle.classList.add('animate');
+                    circle.style.strokeDashoffset = "calc(817.14 - (817.14*100) / 100)";
+
+                    setTimeout(function(){
+                        img.src=download.href;
+                        img.style.display='flex';
+                        download.style.display ='block';
+                    },8000);
+
+                    console.log("link   " + link1)
+                    console.log("link   " + link2)
                 }
 
         })
