@@ -64,7 +64,9 @@ Therefore, this technology can find several applications:
 
 - **Social networks**. Social network platforms are rising in popularity so much that they are also being used to do marketing campaigns. In order to maintain a coherent style on all these platforms, an artistic direction is needed. **Detacto** is the perfect solution for this. It will allow you to create and maintain a unique style and image for your social networks.
 
-## About the model
+## Architecture of the project
+
+![dedacto.png](images/architecture.png)
 
 ## Cost analysis
 
